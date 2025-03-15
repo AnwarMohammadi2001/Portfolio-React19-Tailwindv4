@@ -9,7 +9,7 @@ const applyDarkMode = (isDarkMode) => {
   }
 };
 
-const initialDarkMode = localStorage.getItem("darkMode") === "false" || true;
+const initialDarkMode = localStorage.getItem("darkMode") === "true" || false;
 applyDarkMode(initialDarkMode); // Apply dark mode on initial load
 
 const darkModeSlice = createSlice({

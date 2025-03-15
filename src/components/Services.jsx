@@ -35,18 +35,16 @@ const Services = () => {
       <h2 className="text-4xl font-light xl:mt-0 mb-32 mt-12 text-red-600 dark:text-amber-500 ">
         Skill-set
       </h2>
-      <div className="w-full  xl:w-[900px] lg:[800px] md:[600px] grid lg:grid-cols-3 grid-cols-1 lg:gap-12 gap-8 xl:mb-0 mb-16 ">
+      <div className="w-full  xl:w-[900px] lg:[800px] md:[600px] grid lg:grid-cols-3 grid-cols-1 lg:gap-12 gap-12 xl:mb-0 mb-16 ">
         {skillCards.map((card, index) => (
           <div
             key={index}
-            className="lg:max-w-[280px] md:max-w-[400px] max-w-[320px] w-full mx-auto rounded-sm ring-2 ring-gray-400/20 shadow-md shadow-gray-700/20 relative isolate"
+            className="lg:max-w-[290px] md:max-w-[400px] max-w-[320px] w-full mx-auto rounded-sm ring-2 ring-gray-400/20 shadow-md shadow-gray-700/20 relative isolate"
             onMouseEnter={() => setHoverCardIndex(index)}
             onMouseLeave={() => setHoverCardIndex(null)}
           >
             <div className="p-3 bg-gray-200 dark:bg-gray-800 transition-colors duration-500">
-              <FaBook
-                className={` md:text-4xl text-3xl text-gray-900 dark:text-white transition-colors duration-500 `}
-              />
+             <span className="md:text-4xl text-3xl text-gray-900 dark:text-white transition-colors duration-500">{card.icon}</span>
               <h3 className="md:text-2xl text-xl font-bold my-2 text-red-600 dark:text-amber-500 transition-colors duration-500">
                 {card.title}
               </h3>
@@ -58,7 +56,7 @@ const Services = () => {
             <div
               className={`w-full absolute left-0 ${getPosition(
                 card
-              )} flex flex-col gap-y-5 py-4 transition-all duration-300 -z-10 ${
+              )} flex flex-col gap-y-5 py-2  md:py-4 transition-all duration-300 -z-10 ${
                 hoverCardIndex === index && `${getHoverPosition(card)}`
               }`}
             >
