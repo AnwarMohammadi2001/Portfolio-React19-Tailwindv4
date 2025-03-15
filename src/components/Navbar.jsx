@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkMode } from "../redux/darkModeSlice";
 import { Moon, SunDim } from "lucide-react";
 
-
 const Navbar = () => {
   const dispatch = useDispatch();
   const darkMode = useSelector((state) => state.darkMode.darkMode);
@@ -15,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (isScrollingRef.current) return;
-      const sections = ["home", "services", "contact"];
+      const sections = ["home", "services", "projects", "contact"];
 
       sections.forEach((sectionId) => {
         const element = document.getElementById(sectionId);
@@ -106,6 +105,26 @@ const Navbar = () => {
           <span
             className={`h-[2px] dark:bg-amber-500 bg-red-600 dark:hover:bg-amber-500 absolute -bottom-1 w-full left-0 scale-x-0 group-hover:scale-x-100 transform transition duration-300 origin-right group-hover:origin-left ${
               activeSection === "services"
+                ? "bg-red-600 dark:bg-amber-500 scale-x-100"
+                : " scale-x-0"
+            }`}
+          ></span>
+        </li>
+        <li className="relative cursor-pointer group">
+          <a
+            href="#projects"
+            className={`dark:text-amber-500 cursor-pointer hover:text-red-600 dark:hover:text-amber-500 ${
+              activeSection === "projects"
+                ? "text-red-600 dark:text-amber-500"
+                : "text-gray-600 dark:text-white"
+            }`}
+            onClick={(e) => handleNavClick(e, "projects")}
+          >
+            Projects
+          </a>
+          <span
+            className={`h-[2px] dark:bg-amber-500 bg-red-600 dark:hover:bg-amber-500 absolute -bottom-1 w-full left-0 scale-x-0 group-hover:scale-x-100 transform transition duration-300 origin-right group-hover:origin-left ${
+              activeSection === "projects"
                 ? "bg-red-600 dark:bg-amber-500 scale-x-100"
                 : " scale-x-0"
             }`}
