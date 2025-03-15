@@ -10,7 +10,7 @@ const ResponsiveNavbar = ({ isOpen }) => {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="absolute top-0 left-0 w-full dark:bg-zinc-700  text-white shadow-md z-40"
+          className="absolute top-0 left-0 w-full dark:bg-zinc-700 bg-gray-500 text-white shadow-md z-40"
         >
           <ul className="flex flex-col items-center space-y-4 py-4">
             <li className="relative group">
