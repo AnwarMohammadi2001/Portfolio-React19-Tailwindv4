@@ -8,9 +8,9 @@ import Loader from "./components/Loader";
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Replace 3000 with your desired loading time in milliseconds
+    }, 1000); // Replace 3000 with your desired loading time in milliseconds
 
     return () => clearTimeout(timer);
   }, []);
