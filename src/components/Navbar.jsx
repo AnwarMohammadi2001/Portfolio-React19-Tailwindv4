@@ -14,7 +14,7 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (isScrollingRef.current) return;
-      const sections = ["home", "services", "projects", "contact"];
+      const sections = ["home", "services", "projects", "contact" , 'about'];
 
       sections.forEach((sectionId) => {
         const element = document.getElementById(sectionId);
@@ -85,6 +85,26 @@ const Navbar = () => {
           <span
             className={`h-[2px] dark:bg-amber-500 bg-red-600 dark:hover:bg-amber-500 absolute -bottom-1 w-full left-0 scale-x-0 group-hover:scale-x-100 transform transition duration-300 origin-right group-hover:origin-left ${
               activeSection === "home"
+                ? "bg-red-600 dark:bg-amber-500 scale-x-100"
+                : "  scale-x-0"
+            }`}
+          ></span>
+        </li>
+        <li className="relative group">
+          <a
+            href="#about"
+            className={`dark:text-amber-500 cursor-pointer hover:text-red-600  dark:hover:text-amber-500 ${
+              activeSection === "about"
+                ? "text-red-600 dark:text-amber-500"
+                : "text-gray-600 dark:text-white"
+            }`}
+            onClick={(e) => handleNavClick(e, "about")}
+          >
+            About Us
+          </a>
+          <span
+            className={`h-[2px] dark:bg-amber-500 bg-red-600 dark:hover:bg-amber-500 absolute -bottom-1 w-full left-0 scale-x-0 group-hover:scale-x-100 transform transition duration-300 origin-right group-hover:origin-left ${
+              activeSection === "about"
                 ? "bg-red-600 dark:bg-amber-500 scale-x-100"
                 : "  scale-x-0"
             }`}

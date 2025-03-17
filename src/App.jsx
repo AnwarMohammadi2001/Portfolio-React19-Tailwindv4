@@ -7,6 +7,7 @@ import Loader from "./components/Loader";
 import Skill from "./components/Skill";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
+import About from "./components/About";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +24,7 @@ const App = () => {
       {!isLoading && (
         <>
           <Hero />
+          <About />
           <Services />
           <Skill />
           <Projects />

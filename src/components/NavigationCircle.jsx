@@ -10,9 +10,15 @@ const NavigationCircle = ({ section }) => {
       ></div>
       <div
         className={`w-5 aspect-square border bg-gray-200 border-red-600 dark:border-amber-500 rounded-full transition-colors duration-500 ${
+          section === "about" ? "bg-red-600 dark:bg-amber-500" : "bg-gray300"
+        }`}
+      ></div>
+      <div
+        className={`w-5 aspect-square border bg-gray-200 border-red-600 dark:border-amber-500 rounded-full transition-colors duration-500 ${
           section === "services" ? "bg-red-600 dark:bg-amber-500" : "bg-gray300"
         }`}
       ></div>
+
       <div
         className={`w-5 aspect-square border bg-gray-200 border-red-600 dark:border-amber-500 rounded-full transition-colors duration-500 ${
           section === "projects" ? "bg-red-600 dark:bg-amber-500" : "bg-gray300"
