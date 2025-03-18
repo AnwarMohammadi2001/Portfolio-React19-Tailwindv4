@@ -1,33 +1,85 @@
 import React from "react";
 import NavigationCircle from "./NavigationCircle";
+import {
+  FaCode,
+  FaServer,
+  FaPalette,
+  FaBriefcase,
+  FaWrench,
+  FaHeadset,
+} from "react-icons/fa";
+
+const services = [
+  {
+    icon: <FaCode className="w-10 h-10 text-blue-500" />,
+    title: "Web Development",
+  },
+  {
+    icon: <FaServer className="w-10 h-10 text-green-500" />,
+    title: "Backend Development",
+  },
+  {
+    icon: <FaPalette className="w-10 h-10 text-yellow-500" />,
+    title: "UI/UX Design",
+  },
+  {
+    icon: <FaBriefcase className="w-10 h-10 text-purple-500" />,
+    title: "Full-Stack Development",
+  },
+  {
+    icon: <FaWrench className="w-10 h-10 text-red-500" />,
+    title: "Website Maintenance",
+  },
+  {
+    icon: <FaHeadset className="w-10 h-10 text-teal-500" />,
+    title: "Consultation & Support",
+  },
+];
 
 const About = () => {
   return (
     <div
       id="about"
-      className="flex min-h-screen border flex-col justify-center items-center px-4 xl:py-0 py-10"
+      className="flex w-full min-h-screen border flex-col justify-center items-center px-4 xl:py-0 py-10 transition-colors duration-500"
     >
-      <h2 className="text-4xl font-light xl:mt-0 mb-12 mt-12 text-red-600 dark:text-amber-500">
-        About Me
-      </h2>
-      <div className="flex flex-col xl:flex-row justify-center items-center xl:space-x-12 w-full max-w-6xl">
-        {/* First Section: Image */}
-        <div className="xl:w-1/2 w-full flex justify-center xl:justify-end mb-8 xl:mb-0">
-          <img
-            src="/path-to-your-image.jpg" // Replace with your image path
-            alt="About Me"
-            className="rounded-full w-64 h-64 xl:w-80 xl:h-80 object-cover shadow-lg"
-          />
-        </div>
-
+      <div className="flex flex-col xl:flex-row border p-5 justify-center items-center xl:space-x-12 w-full max-w-7xl">
         {/* Second Section: Title, Story, and Resume Button */}
         <div className="xl:w-1/2 w-full flex flex-col justify-center xl:items-start items-center xl:text-left text-center">
-          <h3 className="text-3xl font-semibold text-gray-800 dark:text-white mb-4">
-            John Doe
+          <h2 className="text-2xl font-semibold text-red-600 dark:text-amber-500 mb-4">
+            About Me
+          </h2>
+          <h3 className="xl:text-5xl lg:text-4xl md:text-3xl text-xl font-semibold text-gray-800 dark:text-white mb-4">
+            Anwar Mohammadi
           </h3>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            Hi, I'm John Doe, a passionate software developer with over 5 years of experience in building web applications. I specialize in front-end development using React and have a strong background in back-end technologies like Node.js and Python. I love solving complex problems and creating user-friendly interfaces that make a difference.
+          <p className="text-lg text-gray-600 dark:text-gray-300 text-justify mb-8">
+            Hi, I'm Mohammad Anwar, a passionate web developer from Kabul with
+            over 4 years of experience building responsive and dynamic web
+            applications. I specialize in frontend development using React and
+            Tailwind CSS, with a strong background in backend technologies like
+            Django and Node.js. I hold a Bachelor's degree in Computer Science
+            from Kabul Polytechnic University. I love crafting clean,
+            user-friendly interfaces and continuously learning new technologies
+            to enhance my skills.
           </p>
+
+          <div className="max-w-6xl mx-auto text-center">
+            <p className="text-gray-600 mb-12">
+              Offering professional and reliable services to meet your needs.
+            </p>
+            <div className="flex flex-wrap gap-5">
+              {services.map((service, index) => (
+                <div className="" key={index}>
+                  <div className="flex items-center justify-center w-full h-16 bg-red-600 dark:bg-amber-500 rounded-md shadow-md transition-colors duration-300">
+                    {service.icon}
+                  </div>
+                  <h4 className="text-lg text-gray-800 dark:text-white mt-2">
+                    {service.title}
+                  </h4>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <a
             href="/path-to-your-resume.pdf" // Replace with your resume path
             download="JohnDoe_Resume.pdf"
@@ -35,6 +87,11 @@ const About = () => {
           >
             Download Resume
           </a>
+        </div>
+        {/* First Section: Image */}
+        <div className="xl:w-1/2 w-full grid grid-cols-1 md:grid-cols-2 gap-5 mb-8 xl:mb-0">
+          <div className="border h-full "></div>
+          <div className="border h-full "></div>
         </div>
       </div>
       <NavigationCircle section={"about"} />
