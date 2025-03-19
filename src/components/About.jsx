@@ -62,24 +62,6 @@ const About = () => {
             to enhance my skills.
           </p>
 
-          <div className="max-w-6xl mx-auto text-center">
-            <p className="text-gray-600 mb-12">
-              Offering professional and reliable services to meet your needs.
-            </p>
-            <div className="flex flex-wrap gap-5">
-              {services.map((service, index) => (
-                <div className="" key={index}>
-                  <div className="flex items-center justify-center w-full h-16 bg-red-600 dark:bg-amber-500 rounded-md shadow-md transition-colors duration-300">
-                    {service.icon}
-                  </div>
-                  <h4 className="text-lg text-gray-800 dark:text-white mt-2">
-                    {service.title}
-                  </h4>
-                </div>
-              ))}
-            </div>
-          </div>
-
           <a
             href="/path-to-your-resume.pdf" // Replace with your resume path
             download="JohnDoe_Resume.pdf"
@@ -88,10 +70,28 @@ const About = () => {
             Download Resume
           </a>
         </div>
+
         {/* First Section: Image */}
         <div className="xl:w-1/2 w-full grid grid-cols-1 md:grid-cols-2 gap-5 mb-8 xl:mb-0">
           <div className="border h-full "></div>
           <div className="border h-full "></div>
+        </div>
+      </div>
+      <div className="max-w-7xl  mx-auto ">
+        <p className="text-gray-600 mb-12">
+          Offering professional and reliable services to meet your needs.
+        </p>
+        <div className="flex flex-wrap gap-5">
+          {services.map((service, index) => (
+            <div className="" key={index}>
+              <div className="flex items-center justify-center w-full h-16 bg-red-600 dark:bg-amber-500 rounded-md shadow-md transition-colors duration-300">
+                {service.icon}
+              </div>
+              <h4 className="text-lg text-gray-800 dark:text-white mt-2">
+                {service.title}
+              </h4>
+            </div>
+          ))}
         </div>
       </div>
       <NavigationCircle section={"about"} />
