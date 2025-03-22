@@ -1,100 +1,83 @@
-import React, { useState } from "react";
-import NavigationCircle from "./NavigationCircle";
+import { useState } from "react";
+import dashboard from "../assets/dashboard-app.webp";
+import ecommerce from "../assets/e-commerce-app.png";
+import food from "../assets/food-app.jpg";
+import travel from "../assets/travel-app.jpg";
+import RevealOnScroll from "../utils/RevealOnScroll";
 
-const filterButtons = ["All", "Frontend", "Backend", "UI/UX"];
-
-const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState("All");
-
-  const handleFilterClick = (filter) => {
-    setActiveFilter(filter);
-  };
-
+function Projects() {
+  const [projects] = useState([
+    {
+      image: dashboard,
+      name: "Dashboard App",
+      brief:
+        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+    },
+    {
+      image: ecommerce,
+      name: "E-Commerce App",
+      brief:
+        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+    },
+    {
+      image: food,
+      name: "Food App",
+      brief:
+        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+    },
+    {
+      image: travel,
+      name: "Travel App",
+      brief:
+        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+    },
+  ]);
   return (
-    <div
+    <section
       id="projects"
-      className="flex min-h-screen flex-col justify-center items-center px-4 xl:py-0 py-10"
+      className="min-h-screen flex items-center font-mono justify-center py-20"
     >
-      <h2 className="text-4xl font-light xl:mt-0 mb-10 mt-12 text-red-600 dark:text-amber-500">
-        What I've Built
-      </h2>
-      <div className="flex gap-4 mb-10">
-        {filterButtons.map((filter) => (
-          <button
-            key={filter}
-            onClick={() => handleFilterClick(filter)}
-            className={`px-4 py-2 rounded-full transition-all duration-300 ${
-              activeFilter === filter
-                ? "bg-red-600 dark:bg-amber-500 dark:text-black text-white"
-                : "bg-gray-200 dark:bg-gray-800 text-gray-600 dark:text-gray-300"
-            }`}
-          >
-            {filter}
-          </button>
-        ))}
-      </div>
+      <RevealOnScroll>
+        <div className="max-w-3xl mx-auto px-4">
+          <h2 className="max-w-3xl text-4xl font-semibold mb-12 bg-gradient-to-r from-teal-500 to-indigo-600 bg-clip-text text-transparent text-center ">
+            Features Projects
+          </h2>
 
-      <div className="w-full flex flex-wrap justify-center gap-6">
-        {activeFilter === "All" || activeFilter === "Frontend" ? (
-          <div className="w-80 h-40 bg-blue-300 rounded-lg">
-            Frontend Project 1
-          </div>
-        ) : null}
-
-        {activeFilter === "All" || activeFilter === "Backend" ? (
-          <div className="w-80 h-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105">
-            <div className="h-36 bg-green-300 flex items-center justify-center">
-              <img
-                src="https://via.placeholder.com/300x150"
-                alt="Project Thumbnail"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="p-4">
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200">
-                Backend Project 1
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
-                A powerful backend system built with Node.js and Express.
-              </p>
-              <div className="flex justify-between">
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white bg-green-600 hover:bg-green-700 py-1 px-3 rounded-md transition"
-                >
-                  View Live
-                </a>
-                <a
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-white bg-gray-600 hover:bg-gray-700 py-1 px-3 rounded-md transition"
-                >
-                  View Code
-                </a>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className="p-6 rounded-xl flex flex-col items-center text-center border-2 border-white/10 hover:border-blue-500/30 hover:shadow-[9_2px_8px_rgba(59,130,246,0.2)] hover:-translate-y-1 transition-all hover:bg-cyan-900 "
+              >
+                <h3 className="font-semibold text-xl mb-4">{project.name}</h3>
+                <p className="text-gray-300 mb-4">{project.brief} </p>
+                <div className="flex flex-wrap sm:items-center gap-2 mb-4">
+                  {["React", "Supabase", "Vercel"].map((tech, index) => (
+                    <span
+                      key={index}
+                      className="bg-blue-500/10 text-blue-400 py-1 px-3 rounded-full text-balance hover:bg-blue-500/20 hover:shadow-[9_2px_8px_rgba(59,130,22.46,0.2)] transition "
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  <div className="flex flex-col text-center my-5 py-3 justify-center gap-3 border-2 border-white/10 hover:border-blue-500/30 hover:shadow-[9_2px_8px_rgba(59,130,22.46,0.2)]  cursor-pointer rounded-xl ">
+                    <p className="text-gray-200">View Project</p>
+                    <a
+                      href="https://github.com/ISHAQ98"
+                      className="flex justify-between items-center font-bold text-blue-400 transition-colors hover:text-white"
+                    >
+                      {" "}
+                      <img src={project.image} alt={`${project.name}Image `} />
+                    </a>
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
-        ) : null}
-
-        {activeFilter === "All" || activeFilter === "UI/UX" ? (
-          <div className="w-80 h-40 bg-purple-300 rounded-lg">
-            UI/UX Project 1
-          </div>
-        ) : null}
-
-        {activeFilter === "All" ? (
-          <div className="w-80 h-40 bg-yellow-300 rounded-lg">
-            Full-Stack Project 1
-          </div>
-        ) : null}
-      </div>
-
-      <NavigationCircle section={"projects"} />
-    </div>
+        </div>
+      </RevealOnScroll>
+    </section>
   );
-};
+}
 
 export default Projects;
