@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { skillCards } from "./data";
-import { a, div } from "framer-motion/client";
-import { FaBook } from "react-icons/fa";
+
 import NavigationCircle from "./NavigationCircle";
 
 const Services = () => {

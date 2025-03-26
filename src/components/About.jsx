@@ -1,13 +1,5 @@
 import React from "react";
 import NavigationCircle from "./NavigationCircle";
-import {
-  FaCode,
-  FaServer,
-  FaPalette,
-  FaBriefcase,
-  FaWrench,
-  FaHeadset,
-} from "react-icons/fa";
 import { motion } from "framer-motion";
 import image1 from "../assets/images/cover1.png";
 import image2 from "../assets/images/cover1.png";
