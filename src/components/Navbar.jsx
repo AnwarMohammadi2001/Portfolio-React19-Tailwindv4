@@ -6,7 +6,7 @@ import { Moon, SunDim } from "lucide-react";
 const Navbar = () => {
   const dispatch = useDispatch();
   const darkMode = useSelector((state) => state.darkMode.darkMode);
-  // const [isOpen, setIsOpen] = useState(false);
+
   const [activeSection, setActiveSection] = useState("home");
   const iconClass = darkMode ? "text-amber-500" : "text-gray-700";
 
@@ -68,7 +68,7 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Desktop Navigation */}
+      
       <ul className="flex gap-x-6 mt-3 md:mt-0  lg:text-lg font-Roboto text-sm md:text-md">
         <li className="relative group">
           <a

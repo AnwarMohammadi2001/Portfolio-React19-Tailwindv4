@@ -12,7 +12,7 @@ const Hero = () => {
   const [roadImageOpacity, setRoadImageOpacity] = useState(0.5);
 
   useEffect(() => {
-    let currentIndex = 0; // Declare currentIndex inside the useEffect
+    let currentIndex = 0; 
 
     const interval = setInterval(() => {
       setIsRotating(true);
@@ -20,10 +20,10 @@ const Hero = () => {
         currentIndex = (currentIndex + 1) % professionTexts.length;
         setCurrentText(professionTexts[currentIndex]);
         setIsRotating(false);
-      }, 2000); // Duration of the rotation animation
-    }, 4000); // Change text every 3 seconds
+      }, 2000); 
+    }, 4000); 
 
-    return () => clearInterval(interval); // Cleanup the interval on component unmount
+    return () => clearInterval(interval); 
   }, []);
 
   return (
