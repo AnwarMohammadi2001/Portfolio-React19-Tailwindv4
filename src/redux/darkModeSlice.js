@@ -1,4 +1,4 @@
-// src/redux/darkModeSlice.js
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const applyDarkMode = (isDarkMode) => {
@@ -10,7 +10,7 @@ const applyDarkMode = (isDarkMode) => {
 };
 
 const initialDarkMode = localStorage.getItem("darkMode") === "true" || false;
-applyDarkMode(initialDarkMode); // Apply dark mode on initial load
+applyDarkMode(initialDarkMode); 
 
 const darkModeSlice = createSlice({
   name: "darkMode",
@@ -21,7 +21,7 @@ const darkModeSlice = createSlice({
     toggleDarkMode: (state) => {
       state.darkMode = !state.darkMode;
       localStorage.setItem("darkMode", state.darkMode);
-      applyDarkMode(state.darkMode); // Apply dark mode on toggle
+      applyDarkMode(state.darkMode); 
     },
   },
 });
