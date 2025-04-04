@@ -8,7 +8,7 @@ const Footer = () => {
      dark:bg-zinc-900 text-gray-300 py-6"
     >
       <div className="container mx-auto text-center">
-        <p className="text-lg font-semibold">Mohammad Anwar</p>
+        <p className="text-lg font-semibold text-gray-800 dark:text-gray-100">Mohammad Anwar</p>
         <p className="text-sm mt-2 max-w-xl mx-auto text-gray-600 dark:text-gray-400">
           Passionate web developer from Kabul, Afghanistan. I specialize in
           frontend technologies and enjoy building responsive and interactive
