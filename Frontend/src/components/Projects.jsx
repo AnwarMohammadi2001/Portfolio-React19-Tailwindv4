@@ -1,37 +1,47 @@
 import { useState } from "react";
-import dashboard from "../assets/dashboard-app.webp";
-import ecommerce from "../assets/e-commerce-app.png";
-import food from "../assets/food-app.jpg";
-import travel from "../assets/travel-app.jpg";
+import tamadon from "../assets/project/tamadon.png";
+import cargo from "../assets/project/cargo.png";
+import chiqfrip from "../assets/project/chiqfrip.png";
+import hz from "../assets/project/hz.png";
+
 import RevealOnScroll from "../utils/RevealOnScroll";
 
 function Projects() {
   const [projects] = useState([
     {
-      image: dashboard,
-      name: "Dashboard App",
+      image: tamadon,
+      name: "Tamadon Website & MIS",
       brief:
-        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+        "A web app to manage printing services, orders, and customers efficiently with a clean dashboard.",
+      link: "https://www.tamadonprintingpress.com/",
+      tech: ["React", "Django", "Tailwind", "MySQL"], // <-- project-specific tech
     },
     {
-      image: ecommerce,
-      name: "E-Commerce App",
+      image: cargo,
+      name: "Cargo & Logistic",
       brief:
-        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+        "A web-based logistics platform designed to streamline freight management, offering real-time tracking, booking, and comprehensive cargo information.",
+      link: "https://cargo.hzcitycenter.com/",
+      tech: ["React", "Node.js", "Express", "MySQL"],
     },
     {
-      image: food,
-      name: "Food App",
+      image: chiqfrip,
+      name: "E-Commerce",
       brief:
-        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+        "ChiqFrip is an e-commerce platform where users can browse, shop, and checkout easily, while admins manage products, orders, and users efficiently.",
+      link: "https://www.chiqfrip.com/",
+      tech: ["React", "Redux", "Tailwind", "Firebase", "Django"],
     },
     {
-      image: travel,
-      name: "Travel App",
+      image: hz,
+      name: "Hussain Zada MIS",
       brief:
-        "Scalable Dashboard App with CRUD operations manages all the bookings, users, guests and services.",
+        "An MIS for managing shops, accounting, rent collection, and expenses with a clear, easy-to-use dashboard.",
+      link: "https://www.hzcitycenter.com/",
+      tech: ["React", "Node.js", "MongoDB", "Tailwind"],
     },
   ]);
+
   return (
     <section
       id="projects"
@@ -43,33 +53,41 @@ function Projects() {
             Features Projects
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 px-12 md:px-0 gap-6">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="p-6 rounded-xl flex flex-col items-center text-center border-2 border-white/10 hover:border-blue-500/30 hover:shadow-[9_2px_8px_rgba(59,130,246,0.2)] hover:-translate-y-1 transition-all hover:bg-cyan-900 "
+                className="rounded-xl flex flex-col h-full items-center text-center border-2 border-white/10 hover:border-blue-500/30 hover:shadow-[9_2px_8px_rgba(59,130,246,0.2)] justify-between hover:-translate-y-1 transition-all hover:bg-cyan-900"
               >
-                <h3 className="font-semibold text-xl mb-4">{project.name}</h3>
-                <p className="text-gray-300 mb-4">{project.brief} </p>
-                <div className="flex flex-wrap sm:items-center gap-2 mb-4">
-                  {["React", "Supabase", "Vercel"].map((tech, index) => (
-                    <span
-                      key={index}
-                      className="bg-blue-500/10 text-blue-400 py-1 px-3 rounded-full text-balance hover:bg-blue-500/20 hover:shadow-[9_2px_8px_rgba(59,130,22.46,0.2)] transition "
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  <div className="flex flex-col text-center my-5 py-3 justify-center gap-3 border-2 border-white/10 hover:border-blue-500/30 hover:shadow-[9_2px_8px_rgba(59,130,22.46,0.2)]  cursor-pointer rounded-xl ">
-                    <p className="text-gray-200">View Project</p>
-                    <a
-                      href="https://github.com/ISHAQ98"
-                      className="flex justify-between items-center font-bold text-blue-400 transition-colors hover:text-white"
-                    >
-                      {" "}
-                      <img src={project.image} alt={`${project.name}Image `} />
-                    </a>
+                <div className="p-5 flex flex-col flex-1">
+                  <h3 className="font-semibold text-xl mb-4">{project.name}</h3>
+                  <p className="text-gray-300 mb-4">{project.brief}</p>
+
+                  {/* Project-specific tech */}
+                  <div className="flex flex-wrap sm:items-center gap-2 mt-auto">
+                    {project.tech.map((tech, tIndex) => (
+                      <span
+                        key={tIndex}
+                        className="bg-blue-500/10 text-blue-400 py-1 px-3 rounded-full text-sm font-medium hover:bg-blue-500/20 hover:shadow-[9_2px_8px_rgba(59,130,22.46,0.2)] transition"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
+                </div>
+
+                <div className="flex flex-col p-2 text-center justify-center gap-3 border-white/10 hover:border-blue-500/30 hover:shadow-[9_2px_8px_rgba(59,130,22.46,0.2)] cursor-pointer">
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    className="flex justify-between items-center font-bold text-blue-400 transition-colors hover:text-white"
+                  >
+                    <img
+                      src={project.image}
+                      alt={`${project.name} Image`}
+                      className="rounded-md h-[200px] w-full object-cover"
+                    />
+                  </a>
                 </div>
               </div>
             ))}

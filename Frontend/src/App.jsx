@@ -45,7 +45,7 @@ const App = () => {
           <Hero />
           <About />
           <div className="relative">
-            <div className="absolute right-0 left-0 opacity-20">
+            {/* <div className="absolute right-0 left-0 opacity-20">
               <CurvedLoop
                 marqueeText="Be ✦ Creative ✦ With ✦ React ✦ Bits ✦"
                 speed={3}
@@ -54,7 +54,7 @@ const App = () => {
                 interactive={true}
                 className="custom-text-style"
               />
-            </div>
+            </div> */}
 
             <Services />
           </div>
