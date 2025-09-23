@@ -9,6 +9,7 @@ import Projects from "./components/Projects";
 import Footer from "./components/Footer";
 import About from "./components/About";
 import Particles from "./components/Particles";
+import CurvedLoop from "./components/CurvedLoop";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,7 +44,21 @@ const App = () => {
           {/* Page Content */}
           <Hero />
           <About />
-          <Services />
+          <div className="relative">
+            <div className="absolute right-0 left-0 opacity-20">
+              <CurvedLoop
+                marqueeText="Be ✦ Creative ✦ With ✦ React ✦ Bits ✦"
+                speed={3}
+                curveAmount={500}
+                direction="right"
+                interactive={true}
+                className="custom-text-style"
+              />
+            </div>
+
+            <Services />
+          </div>
+
           <Skill />
           <Projects />
           <Contact />

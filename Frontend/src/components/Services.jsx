@@ -34,16 +34,18 @@ const Services = () => {
       <h2 className="text-4xl font-light xl:mt-0 mb-32 mt-12 text-red-600 dark:text-amber-500 ">
         Skill-set
       </h2>
-      <div className="w-full  xl:w-[900px] lg:[800px] md:[600px] grid lg:grid-cols-3 grid-cols-1 lg:gap-12 gap-12 xl:mb-0 mb-16 ">
+      <div className="w-full  lg:max-w-6xl md:[600px] flex flex-col gap-y-16 md:grid lg:grid-cols-3 grid-cols-1 lg:gap-12  xl:mb-0 mb-16 ">
         {skillCards.map((card, index) => (
           <div
             key={index}
-            className="lg:max-w-[290px] md:max-w-[400px] max-w-[320px] w-full mx-auto rounded-sm ring-2 ring-gray-400/20 shadow-md shadow-gray-700/20 relative isolate"
+            className="lg:max-w-[350px] lg:min-w-[350px] md:max-w-[400px] max-w-[320px] w-full mx-auto rounded-sm ring-2 ring-gray-400/20 shadow-md shadow-gray-700/20 relative isolate"
             onMouseEnter={() => setHoverCardIndex(index)}
             onMouseLeave={() => setHoverCardIndex(null)}
           >
-            <div className="p-3 bg-gray-200 dark:bg-gray-800 transition-colors duration-500">
-             <span className="md:text-4xl text-3xl text-gray-900 dark:text-white transition-colors duration-500">{card.icon}</span>
+            <div className="p-3 bg-gray-200 dark:bg-stone-800 transition-colors duration-500">
+              <span className="md:text-4xl text-3xl text-gray-900 dark:text-white transition-colors duration-500">
+                {card.icon}
+              </span>
               <h3 className="md:text-2xl text-xl font-bold my-2 text-red-600 dark:text-amber-500 transition-colors duration-500">
                 {card.title}
               </h3>
@@ -55,38 +57,20 @@ const Services = () => {
             <div
               className={`w-full absolute left-0 ${getPosition(
                 card
-              )} flex flex-col gap-y-5 py-2  md:py-4 transition-all duration-300 -z-10 ${
+              )} flex flex-col gap-y-5 py-2 md:py-4 transition-all duration-300 -z-10 ${
                 hoverCardIndex === index && `${getHoverPosition(card)}`
               }`}
             >
-              {islargerScreen && card.hoverPosition.large === "top" && (
-                <div className="flex justify-between">
-                  {[...Array(card.projectCount)].map((_, index) => (
-                    <a
-                      href="#"
-                      index={index}
-                      className="text-lg bg-red-600 dark:bg-amber-500 w-10 aspect-square grid place-items-center text-white rounded-full transition-colors
-                        "
+              {card.tools && (
+                <div className="flex flex-wrap justify-center  gap-3 px-3">
+                  {card.tools.map((tool, tIndex) => (
+                    <div
+                      key={tIndex}
+                      className="flex flex-col items-center justify-center gap-1 p-2 rounded-full border dark:border-amber-500 border-red-600 transition-colors duration-300"
                     >
-                      {index + 1}
-                    </a>
-                  ))}
-                </div>
-              )}
-
-              <h2 className="text-2xl text-center text-gray-900 dark:text-white tracking-wide"></h2>
-              {(!islargerScreen ||
-                (islargerScreen && card.hoverPosition.large === "bottom")) && (
-                <div className="flex justify-between">
-                  {[...Array(card.projectCount)].map((_, index) => (
-                    <a
-                      href="#"
-                      key={index}
-                      className="text-lg bg-red-600 dark:bg-amber-500 w-10 aspect-square grid place-items-center text-white rounded-full transition-colors
-                        "
-                    >
-                      {index + 1}
-                    </a>
+                      <span className="text-2xl" style={{ color: tool.color }}>{tool.icon}</span>
+                   
+                    </div>
                   ))}
                 </div>
               )}
