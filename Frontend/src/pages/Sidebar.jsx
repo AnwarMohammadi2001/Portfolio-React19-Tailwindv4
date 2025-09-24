@@ -12,6 +12,7 @@ const Sidebar = ({ activeComponent, setActiveComponent }) => {
     { name: "dashboard", label: "Dashboard" },
     { name: "projects", label: "Projects" },
     { name: "profile", label: "Profile" },
+    { name: "About", label: "About" },
     { name: "logout", label: "Logout" },
   ];
 

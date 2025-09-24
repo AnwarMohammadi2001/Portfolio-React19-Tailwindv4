@@ -1,48 +1,11 @@
 import { useEffect, useState } from "react";
-import tamadon from "../assets/project/tamadon.png";
-import cargo from "../assets/project/cargo.png";
-import chiqfrip from "../assets/project/chiqfrip.png";
-import hz from "../assets/project/hz.png";
 
 import RevealOnScroll from "../utils/RevealOnScroll";
 import axios from "axios";
 
 function Projects() {
   const [projects, setProjects] = useState([]);
-  // const [projects] = useState([
-  //   {
-  //     image: tamadon,
-  //     name: "Tamadon Website & MIS",
-  //     brief:
-  //       "A web app to manage printing services, orders, and customers efficiently with a clean dashboard.",
-  //     link: "https://www.tamadonprintingpress.com/",
-  //     tech: ["React", "Django", "Tailwind", "MySQL"], // <-- project-specific tech
-  //   },
-  //   {
-  //     image: cargo,
-  //     name: "Cargo & Logistic",
-  //     brief:
-  //       "A web-based logistics platform designed to streamline freight management, offering real-time tracking, booking, and comprehensive cargo information.",
-  //     link: "https://cargo.hzcitycenter.com/",
-  //     tech: ["React", "Node.js", "Express", "MySQL"],
-  //   },
-  //   {
-  //     image: chiqfrip,
-  //     name: "E-Commerce",
-  //     brief:
-  //       "ChiqFrip is an e-commerce platform where users can browse, shop, and checkout easily, while admins manage products, orders, and users efficiently.",
-  //     link: "https://www.chiqfrip.com/",
-  //     tech: ["React", "Redux", "Tailwind", "Firebase", "Django"],
-  //   },
-  //   {
-  //     image: hz,
-  //     name: "Hussain Zada MIS",
-  //     brief:
-  //       "An MIS for managing shops, accounting, rent collection, and expenses with a clear, easy-to-use dashboard.",
-  //     link: "https://www.hzcitycenter.com/",
-  //     tech: ["React", "Node.js", "MongoDB", "Tailwind"],
-  //   },
-  // ]);
+
   // Fetch projects
   const fetchProjects = async () => {
     try {

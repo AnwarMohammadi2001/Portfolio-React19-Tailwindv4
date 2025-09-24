@@ -3,8 +3,10 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+
 import authRoutes from "./routes/auth.js";
-import projectRoutes from "./routes/projectRoutes.js"; // 👈 THIS LINE IS REQUIRED
+import projectRoutes from "./routes/projectRoutes.js";
+import aboutRoutes from "./routes/aboutRoutes.js";
 
 dotenv.config();
 
@@ -23,6 +25,7 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
+app.use("/api/about", aboutRoutes);
 app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 
 // Connect MongoDB

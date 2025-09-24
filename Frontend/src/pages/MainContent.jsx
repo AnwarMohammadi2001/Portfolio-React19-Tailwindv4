@@ -4,6 +4,7 @@ import Projects from "../pages/dashboard/Projects"
 import Profile from "../pages/dashboard/Profile";
 import Logout from "../pages/dashboard/Logout";
 import DashboardPage from "./DashboardPage";
+import AboutDashboard from "./dashboard/AboutDashboard";
 
 const MainContent = ({ activeComponent }) => {
   switch (activeComponent) {
@@ -13,6 +14,8 @@ const MainContent = ({ activeComponent }) => {
       return <Projects />;
     case "profile":
       return <Profile />;
+    case "About":
+      return <AboutDashboard />;
     case "logout":
       return <Logout />;
     default:
