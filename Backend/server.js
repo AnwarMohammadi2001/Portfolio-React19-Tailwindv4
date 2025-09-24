@@ -8,6 +8,7 @@ import authRoutes from "./routes/auth.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import aboutRoutes from "./routes/aboutRoutes.js";
 import contactRoutes from "./routes/contactRoutes.js"; // correct path
+import marqueeRoutes from "./routes/marqueeRoutes.js";
 
 dotenv.config();
 
@@ -28,6 +29,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectRoutes);
 app.use("/api/about", aboutRoutes);
 app.use("/api/contact", contactRoutes);
+
+app.use("/api/marquee", marqueeRoutes);
 app.use("/uploads", express.static(path.join(path.resolve(), "uploads")));
 
 // Connect MongoDB
