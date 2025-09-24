@@ -1,34 +1,35 @@
+// src/context/AuthContext.jsx
 import { createContext, useState, useEffect } from "react";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // Get stored user, token, and login time
-  const storedUser = JSON.parse(localStorage.getItem("user")) || null;
-  const storedToken = localStorage.getItem("token") || null;
-  const storedTime = localStorage.getItem("loginTime") || null;
+  // Initialize state from localStorage
+  const [user, setUser] = useState(
+    () => JSON.parse(localStorage.getItem("user")) || null
+  );
+  const [token, setToken] = useState(
+    () => localStorage.getItem("token") || null
+  );
 
-  const [user, setUser] = useState(storedUser);
-  const [token, setToken] = useState(storedToken);
-
+  // Auto-logout after 24 hours
   useEffect(() => {
-    // Check if login time exists and if 24 hours have passed
-    if (storedTime) {
-      const now = new Date().getTime();
-      const loginTime = parseInt(storedTime, 10);
-      const hoursPassed = (now - loginTime) / (1000 * 60 * 60);
-
+    const loginTime = localStorage.getItem("loginTime");
+    if (loginTime) {
+      const now = Date.now();
+      const hoursPassed = (now - parseInt(loginTime, 10)) / (1000 * 60 * 60);
       if (hoursPassed >= 24) {
-        logout(); // Auto logout after 24 hours
+        logout();
       }
     }
   }, []);
 
+  // Sync state with localStorage
   useEffect(() => {
     if (user && token) {
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
-      localStorage.setItem("loginTime", new Date().getTime()); // Save current timestamp
+      localStorage.setItem("loginTime", Date.now().toString());
     } else {
       localStorage.removeItem("user");
       localStorage.removeItem("token");
@@ -36,17 +37,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user, token]);
 
+  // Login function
   const login = (userData, tokenData) => {
     setUser(userData);
     setToken(tokenData);
   };
 
+  // Logout function
   const logout = () => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-    localStorage.removeItem("loginTime");
   };
 
   return (

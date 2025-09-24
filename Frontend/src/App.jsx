@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DashboardPage from "./pages/DashboardPage";
 import { ToastContainer } from "react-toastify";
+import Register from "./pages/Register";
 
 // Protected Route component
 
@@ -23,6 +24,7 @@ function App() {
 
           {/* Login page (standalone) */}
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/dashboard"
             element={

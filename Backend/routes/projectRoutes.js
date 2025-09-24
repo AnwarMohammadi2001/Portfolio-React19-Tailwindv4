@@ -1,19 +1,33 @@
-const express = require("express");
+import express from "express";
+import {
+  addProject,
+  updateProject,
+  getProjects,
+  deleteProject,
+} from "../controllers/projectController.js";
+import { verifyToken, verifyAdmin } from "../middleware/authMiddleware.js";
+import multer from "multer";
+
 const router = express.Router();
-const projectController = require("../controllers/projectController");
-const { verifyToken, verifyAdmin } = require("../middleware/authMiddleware");
 
-// Public route: get all projects
-router.get("/", projectController.getProjects);
+// Multer storage configuration
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => cb(null, Date.now() + "-" + file.originalname),
+});
 
-// Protected routes: add, update, delete projects (admin only)
-router.post("/", verifyToken, verifyAdmin, projectController.addProject);
-router.put("/:id", verifyToken, verifyAdmin, projectController.updateProject);
-router.delete(
+const upload = multer({ storage });
+
+// Routes
+router.get("/", getProjects); // list all projects
+router.post("/", verifyToken, verifyAdmin, upload.single("image"), addProject);
+router.put(
   "/:id",
   verifyToken,
   verifyAdmin,
-  projectController.deleteProject
+  upload.single("image"),
+  updateProject
 );
+router.delete("/:id", verifyToken, verifyAdmin, deleteProject);
 
-module.exports = router;
+export default router;
