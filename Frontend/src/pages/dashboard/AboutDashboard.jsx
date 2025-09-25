@@ -25,9 +25,6 @@ const AboutDashboard = () => {
     setFetching(true);
     try {
       const res = await axios.get("http://localhost:5000/api/about");
-      console.log("About data:", res.data);
-
-      // Handle array or single object
       if (Array.isArray(res.data) && res.data.length > 0) {
         setAbout(res.data[0]);
       } else if (res.data) {
@@ -36,7 +33,7 @@ const AboutDashboard = () => {
         setAbout(null);
       }
     } catch (err) {
-      console.error("Error fetching About info:", err);
+      console.error(err);
       toast.error("Failed to fetch About info!");
     } finally {
       setFetching(false);
@@ -47,16 +44,11 @@ const AboutDashboard = () => {
     fetchAbout();
   }, []);
 
-  // Handle form input changes
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
+  const handleFileChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.files[0] });
-  };
 
-  // Submit form to backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -87,7 +79,6 @@ const AboutDashboard = () => {
     }
   };
 
-  // Populate form with existing About info
   const handleEdit = () => {
     setForm({
       name: about?.name || "",
@@ -102,20 +93,20 @@ const AboutDashboard = () => {
 
   if (fetching) {
     return (
-      <div className="p-6 max-w-4xl mx-auto text-center text-gray-500">
+      <div className="p-6 max-w-4xl mx-auto text-center text-gray-500 dark:text-gray-300">
         Loading About info...
       </div>
     );
   }
 
   return (
-    <div className="p-6 max-w-4xl mx-auto">
+    <div className="p-4 sm:p-6 md:p-8 dark:bg-gray-900 dark:text-gray-200 min-h-screen transition-colors duration-300">
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
         <h1 className="text-3xl font-bold">About Me</h1>
         <button
           onClick={handleEdit}
-          className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition"
+          className="bg-blue-600 text-white px-4 py-2 rounded shadow hover:bg-blue-700 transition w-full sm:w-auto"
         >
           {about ? "Edit About" : "Add About"}
         </button>
@@ -123,7 +114,7 @@ const AboutDashboard = () => {
 
       {/* Display About info */}
       {about ? (
-        <div className="bg-white p-6 rounded shadow space-y-4">
+        <div className="bg-white dark:bg-gray-800 p-6 rounded shadow space-y-4 transition-colors duration-300">
           <p>
             <strong>Name:</strong> {about.name}
           </p>
@@ -145,38 +136,38 @@ const AboutDashboard = () => {
               </a>
             </p>
           )}
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             {about.image1 && (
               <img
                 src={`http://localhost:5000${about.image1}`}
                 alt="image1"
-                className="h-24 w-24 object-cover rounded"
+                className="h-24 w-24 sm:h-32 sm:w-32 object-cover rounded"
               />
             )}
             {about.image2 && (
               <img
                 src={`http://localhost:5000${about.image2}`}
                 alt="image2"
-                className="h-24 w-24 object-cover rounded"
+                className="h-24 w-24 sm:h-32 sm:w-32 object-cover rounded"
               />
             )}
           </div>
         </div>
       ) : (
-        <p className="text-gray-500">No About info found.</p>
+        <p className="text-gray-500 dark:text-gray-400">No About info found.</p>
       )}
 
       {/* Modal for Editing */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white rounded-lg w-full max-w-lg p-6 relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+          <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-lg p-6 relative transition-colors duration-300">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-3 right-3 text-red-500 hover:text-gray-900"
             >
               <FaXmark size={24} />
             </button>
-            <h2 className="text-xl font-bold mb-4">
+            <h2 className="text-xl font-bold mb-4 dark:text-gray-100">
               {about ? "Edit About" : "Add About"}
             </h2>
             <form onSubmit={handleSubmit} className="space-y-3">
@@ -185,7 +176,7 @@ const AboutDashboard = () => {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Your Name"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
                 required
               />
               <textarea
@@ -193,7 +184,7 @@ const AboutDashboard = () => {
                 value={form.story}
                 onChange={handleChange}
                 placeholder="Your Story"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
                 required
               />
               <input
@@ -202,26 +193,26 @@ const AboutDashboard = () => {
                 value={form.experienceYears}
                 onChange={handleChange}
                 placeholder="Experience Years"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
                 min={0}
               />
               <input
                 type="file"
                 name="resume"
                 onChange={handleFileChange}
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <input
                 type="file"
                 name="image1"
                 onChange={handleFileChange}
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <input
                 type="file"
                 name="image2"
                 onChange={handleFileChange}
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <button
                 type="submit"
@@ -229,7 +220,7 @@ const AboutDashboard = () => {
                   loading
                     ? "bg-gray-400 cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-700"
-                }`}
+                } transition`}
                 disabled={loading}
               >
                 {loading ? "Saving..." : "Save About Info"}

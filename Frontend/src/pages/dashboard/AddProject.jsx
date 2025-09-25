@@ -3,8 +3,8 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { FaXmark } from "react-icons/fa6";
-import { toast } from "react-toastify"; // ✅ Import toast
-import "react-toastify/dist/ReactToastify.css"; // ✅ Toast CSS
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDelete } from "react-icons/md";
 import { BsLink } from "react-icons/bs";
@@ -24,7 +24,6 @@ const AddProject = () => {
   const [editingId, setEditingId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Fetch projects
   const fetchProjects = async () => {
     try {
       const res = await axios.get("http://localhost:5000/api/projects");
@@ -39,18 +38,13 @@ const AddProject = () => {
     fetchProjects();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
+  const handleFileChange = (e) =>
     setForm({ ...form, image: e.target.files[0] });
-  };
 
-  // Add or update project
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const formData = new FormData();
       formData.append("name", form.name);
@@ -90,7 +84,6 @@ const AddProject = () => {
     }
   };
 
-  // Delete project
   const handleDelete = async (id) => {
     const result = await Swal.fire({
       title: "Are you sure?",
@@ -116,7 +109,6 @@ const AddProject = () => {
     }
   };
 
-  // Edit project (populate form)
   const handleEdit = (project) => {
     setForm({
       name: project.name,
@@ -128,6 +120,7 @@ const AddProject = () => {
     setEditingId(project._id);
     setIsModalOpen(true);
   };
+
   const [selectedProject, setSelectedProject] = useState(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
@@ -142,11 +135,11 @@ const AddProject = () => {
   };
 
   return (
-    <div>
+    <div className="dark:bg-gray-900 dark:text-gray-200 p-4 transition-colors duration-300">
       {/* Add Project Button */}
       <div className="flex justify-between mb-4">
         <div className="flex items-center gap-x-5">
-          <p className="text-xl font-semibold">Your Project</p>
+          <p className="text-xl font-semibold">Your Projects</p>
           <p className="text-xl font-semibold">{projects.length}</p>
         </div>
         <button
@@ -160,9 +153,9 @@ const AddProject = () => {
       {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-          <div className="bg-white rounded-lg w-full max-w-lg p-6 relative">
+          <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-lg p-6 relative transition-colors duration-300">
             <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold">
+              <h2 className="text-xl font-bold dark:text-gray-100">
                 {editingId ? "Edit Project" : "Add New Project"}
               </h2>
               <button
@@ -181,38 +174,38 @@ const AddProject = () => {
                 value={form.name}
                 onChange={handleChange}
                 placeholder="Project Name"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <input
                 name="brief"
                 value={form.brief}
                 onChange={handleChange}
                 placeholder="Brief"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <input
                 name="link"
                 value={form.link}
                 onChange={handleChange}
                 placeholder="Project Link"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <input
                 name="tech"
                 value={form.tech}
                 onChange={handleChange}
                 placeholder="Tech (comma separated)"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <input
                 type="file"
                 name="image"
                 onChange={handleFileChange}
-                className="w-full p-2 border rounded"
+                className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
               />
               <button
                 type="submit"
-                className="bg-blue-600 text-white w-full p-2 rounded"
+                className="bg-blue-600 text-white w-full p-2 rounded hover:bg-blue-700 transition"
               >
                 {editingId ? "Update Project" : "Add Project"}
               </button>
@@ -221,9 +214,10 @@ const AddProject = () => {
         </div>
       )}
 
+      {/* Projects Table */}
       <div className="overflow-x-auto mt-6">
-        <table className="min-w-full bg-white border rounded shadow">
-          <thead className="bg-gray-100">
+        <table className="min-w-full bg-white dark:bg-gray-800 border rounded shadow transition-colors duration-300">
+          <thead className="bg-gray-100 dark:bg-gray-700 dark:text-gray-100">
             <tr>
               <th className="py-2 px-4 border">#</th>
               <th className="py-2 px-4 border">Name</th>
@@ -234,9 +228,12 @@ const AddProject = () => {
               <th className="py-2 px-4 border">Actions</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="dark:text-gray-200">
             {projects.map((project, index) => (
-              <tr key={project._id} className="hover:bg-gray-50">
+              <tr
+                key={project._id}
+                className="hover:bg-gray-50 dark:hover:bg-gray-700"
+              >
                 <td className="py-2 px-4 border">{index + 1}</td>
                 <td className="py-2 px-4 border">{project.name}</td>
                 <td className="py-2 px-4 border">
@@ -270,68 +267,71 @@ const AddProject = () => {
                   <button onClick={() => handleDelete(project._id)}>
                     <MdOutlineDelete size={24} className="text-red-500" />
                   </button>
-                  <button
-                    onClick={() => openDetailModal(project)}
-                    className="  px-2 py-1 rounded"
-                  >
-                    <IoEyeOutline size={24} />
+                  <button onClick={() => openDetailModal(project)}>
+                    <IoEyeOutline
+                      size={24}
+                      className="text-gray-600 dark:text-gray-200"
+                    />
                   </button>
                 </td>
               </tr>
             ))}
             {projects.length === 0 && (
               <tr>
-                <td colSpan="7" className="text-center py-4 text-gray-500">
+                <td
+                  colSpan="7"
+                  className="text-center py-4 text-gray-500 dark:text-gray-300"
+                >
                   No projects available
                 </td>
               </tr>
             )}
           </tbody>
         </table>
-
-        {/* Details Modal */}
-        {isDetailModalOpen && selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="bg-white rounded-lg w-full max-w-lg p-6 relative">
-              <button
-                onClick={closeDetailModal}
-                className="absolute top-3 right-3 text-red-500 hover:text-gray-900"
-              >
-                <FaXmark size={24} /> {/* You can use X icon instead */}
-              </button>
-              <h2 className="text-2xl font-bold mb-4">
-                {selectedProject.name}
-              </h2>
-              <p className="mb-2">
-                <strong>Brief:</strong> {selectedProject.brief}
-              </p>
-              <p className="mb-2">
-                <strong>Tech:</strong> {selectedProject.tech.join(", ")}
-              </p>
-              {selectedProject.link && (
-                <p className="mb-2">
-                  <strong>Link:</strong>{" "}
-                  <a
-                    href={selectedProject.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-500 underline"
-                  >
-                    {selectedProject.link}
-                  </a>
-                </p>
-              )}
-              {selectedProject.image && (
-                <img
-                  src={`http://localhost:5000${selectedProject.image}`}
-                  alt={selectedProject.name}
-                  className="w-full h-auto mt-4 rounded"
-                />
-              )}
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Details Modal */}
+      {isDetailModalOpen && selectedProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-lg p-6 relative transition-colors duration-300">
+            <button
+              onClick={closeDetailModal}
+              className="absolute top-3 right-3 text-red-500 hover:text-gray-900"
+            >
+              <FaXmark size={24} />
+            </button>
+            <h2 className="text-2xl font-bold mb-4 dark:text-gray-100">
+              {selectedProject.name}
+            </h2>
+            <p className="mb-2">
+              <strong>Brief:</strong> {selectedProject.brief}
+            </p>
+            <p className="mb-2">
+              <strong>Tech:</strong> {selectedProject.tech.join(", ")}
+            </p>
+            {selectedProject.link && (
+              <p className="mb-2">
+                <strong>Link:</strong>{" "}
+                <a
+                  href={selectedProject.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline"
+                >
+                  {selectedProject.link}
+                </a>
+              </p>
+            )}
+            {selectedProject.image && (
+              <img
+                src={`http://localhost:5000${selectedProject.image}`}
+                alt={selectedProject.name}
+                className="w-full h-auto mt-4 rounded"
+              />
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

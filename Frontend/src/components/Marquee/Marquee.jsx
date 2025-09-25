@@ -1,31 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import MarqueeItem from "./MarqueeItem";
 
 const Marquee = () => {
-  const upperMarquee = [
-    "/html.png",
-    "/tech/react.png",
-    "/tech/tailwind-css.svg",
-    "/tech/angual.png",
-    "/tech/vue.png",
-    "/tech/boostrap.png",
-    "/tech/js.png",
-    "/tech/figma.png",
-    "/tech/vscode.png",
-  ];
+  const [upperMarquee, setUpperMarquee] = useState([]);
+  const [lowerMarquee, setLowerMarquee] = useState([]);
 
-  const lowerMarquee = [
-    "/tech/node.png",
-    "/tech/worpress.png",
-    "/tech/next.png",
-    "/tech/mongo.png",
-    "/tech/mysql.png",
-    "/tech/laravel.png",
-    "/tech/git.png",
-    "/tech/gatsby.png",
-    "/tech/fluter.png",
-    "/tech/django.png",
-  ];
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/marquee")
+      .then((res) => {
+        const upper = res.data.filter((item) => item.group === "upper");
+        const lower = res.data.filter((item) => item.group === "lower");
+
+        // prepend server URL
+        setUpperMarquee(upper.map((i) => `http://localhost:5000${i.image}`));
+        setLowerMarquee(lower.map((i) => `http://localhost:5000${i.image}`));
+      })
+      .catch((err) => console.error("❌ Error fetching marquee:", err));
+  }, []);
 
   return (
     <div className="container mx-auto">
