@@ -27,7 +27,7 @@ function Projects() {
     >
       <RevealOnScroll>
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className=" text-4xl font-semibold mb-12 bg-gradient-to-r from-teal-500 to-indigo-600 bg-clip-text text-transparent text-center ">
+          <h2 className=" text-4xl font-semibold mb-12 bg-gradient-to-r from-teal-500 to-indigo-600 bg-clip-text  text-transparent text-center ">
             Features Projects
           </h2>
 
@@ -35,11 +35,11 @@ function Projects() {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="rounded-xl flex flex-col h-full items-center text-center border-2 border-red-100  dark:border-white/10 hover:border-blue-500/30 hover:shadow-[9_2px_8px_rgba(59,130,246,0.2)] justify-between hover:-translate-y-1 transition-all hover:bg-cyan-900"
+                className="rounded-xl flex flex-col h-full items-center text-center border-2 border-red-100  dark:border-white/10 hover:border-blue-500/30  hover:shadow-[9_2px_8px_rgba(59,130,246,0.2)] justify-between hover:-translate-y-1 transition-all  hover:bg-gray-50 dark:hover:bg-cyan-900"
               >
                 <div className="p-5 flex flex-col flex-1">
-                  <h3 className="font-semibold text-xl mb-4">{project.name}</h3>
-                  <p className="text-gray-300 mb-4">{project.brief}</p>
+                  <h3 className="font-semibold text-xl mb-4 text-black dark:text-gray-100">{project.name}</h3>
+                  <p className="text-gray-700  dark:text-gray-300 mb-4">{project.brief}</p>
 
                   {/* Project-specific tech */}
                   <div className="flex flex-wrap sm:items-center gap-2 mt-auto">

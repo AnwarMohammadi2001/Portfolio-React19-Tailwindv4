@@ -1,10 +1,9 @@
-// backend/models/User.js
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true }, // use email instead of username
   password: { type: String, required: true },
-  isAdmin: { type: Boolean, default: false }, // <-- add this
+  isAdmin: { type: Boolean, default: true },
 });
 
 const User = mongoose.model("User", UserSchema);
